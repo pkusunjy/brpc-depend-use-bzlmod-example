@@ -1,0 +1,31 @@
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "my_proto",
+    srcs = ["echo_c++/echo.proto"],
+)
+
+cc_proto_library(
+    name = "cc_my_proto",
+    deps = [":my_proto"],
+)
+
+cc_binary(
+    name = "client",
+    srcs = ["echo_c++/client.cpp"],
+    deps = [
+        "@brpc//:brpc",
+        ":cc_my_proto",
+    ],
+)
+
+cc_binary(
+    name = "server",
+    srcs = ["echo_c++/server.cpp"],
+    deps = [
+        "@brpc//:brpc",
+        ":cc_my_proto",
+    ],
+)
