@@ -1,0 +1,1 @@
+# brpc-depend-use-bzlmod-example
